@@ -11,7 +11,7 @@
     name: httpd_can_network_connect_db
     state: yes
     persistent: yes
-  when: ansible_selinux
+  when: ansible_selinux and ansible_selinux.status == "enabled"
 
 # Allow httpd to connect to the network
 - name: set httpd_can_network_connect flag on and keep it persistent across reboots
@@ -19,7 +19,7 @@
     name: httpd_can_network_connect
     state: yes
     persistent: yes
-  when: ansible_selinux
+  when: ansible_selinux and ansible_selinux.status == "enabled"
 
 - name: check if icingaweb2 table and user in mysql exist
   shell: >
